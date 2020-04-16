@@ -33,7 +33,7 @@ public class UserAccount {
 
     private boolean enabled = true;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_account_roles",
             joinColumns = @JoinColumn(name = "user_account_id"),
