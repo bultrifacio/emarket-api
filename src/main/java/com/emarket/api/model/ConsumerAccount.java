@@ -18,5 +18,5 @@ public class ConsumerAccount {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_account_id")
-    private UserAccount userAccount;
+    private User user;
 }

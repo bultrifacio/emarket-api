@@ -3,14 +3,15 @@ package com.emarket.api.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "user_account")
-public class UserAccount {
+@Table(name = "user")
+public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -25,18 +26,12 @@ public class UserAccount {
 
     private String phoneNumber;
 
-    private boolean accountNonExpired = true;
-
-    private boolean accountNonLocked = true;
-
-    private boolean credentialsNonExpired = true;
-
     private boolean enabled = true;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "user_account_roles",
-            joinColumns = @JoinColumn(name = "user_account_id"),
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_d"),
             inverseJoinColumns = @JoinColumn(name = "roles_id"))
-    private Role role;
+    private Set<Role> roles;
 }
